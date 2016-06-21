@@ -1,0 +1,73 @@
+    
+        <div class="shop-navbar-box">
+            <ul style="border-bottom:solid 1px #cfcfcf ">
+                <li class="total-date  total-date-on">我参与的</li>
+                <li class="total-date">我喜欢的</li>
+                <li class="total-date">我发起的</li>
+                <li class="slider"></li>
+            </ul>
+        </div>
+<script type='text/javascript'>        
+        $(document).ready(function(){
+    $('.total-date-on').css({"color":"#ce1515"});
+    $('.total-date').on("click",function(){
+        $(this).siblings().css({"color":"#888"});
+        $(this).css({"color":"#ce1515"});
+        if($(this).index()==0){
+            $('.canyu-box').show();
+            $('.canyu-box').siblings().hide();
+        }
+        if($(this).index()==1){
+            $('.xihuan-box').show();
+            $('.xihuan-box').siblings().hide();
+
+        }
+        if($(this).index()==2){
+            $('.faqi-box').show();
+            $('.faqi-box').siblings().hide();
+
+        }
+
+    });
+});
+$(function(){
+        $(".shop-navbar-box ul li").click(function(e) {
+            if ($(this).hasClass('slider')) {
+                return;
+            }
+            var whatTab = $(this).index();
+
+            var howFar =  whatTab*($(this).width());
+
+            $(".slider").css({
+                left: howFar + "px"
+            });
+
+            $(".ripple").remove();
+
+            var posX = $(this).offset().left,
+                posY = $(this).offset().top,
+                buttonWidth = $(this).width(),
+                buttonHeight = $(this).height();
+            $(this).append("<span class='ripple'></span>");
+
+            if (buttonWidth >= buttonHeight) {
+                buttonHeight = buttonWidth;
+            } else {
+                buttonWidth = buttonHeight;
+            }
+
+            var x = e.pageX - posX - buttonWidth / 2;
+            var y = e.pageY - posY - buttonHeight / 2;
+
+            $(".ripple").css({
+                width: buttonWidth,
+                height: buttonHeight,
+                top: y + 'px',
+                left: x + 'px'
+            }).addClass("rippleEffect");
+
+        });
+    }
+);
+</script>
