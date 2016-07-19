@@ -1,0 +1,28 @@
+<style type="text/css">
+        input[type="date"]:before {
+            content: attr(placeholder);
+            color:red;
+        }
+        ::-webkit-input-placeholder {
+            color:red;
+        }
+    </style>  
+
+ <input type="date" placeholder="我是日期" id="date">
+ <input type="week" placeholder="我是日期" id="date">
+ <input type="month" placeholder="我是日期" id="date">
+ <input type="time" placeholder="我是日期" id="date">
+ <input type="datetime" placeholder="我是日期" id="date">
+ <input type="datetime-local" placeholder="我是日期" id="date">
+    <input type="text" placeholder="我是颜色">
+ 
+    <script type="text/javascript">
+        var o = document.getElementById('date');
+        o.onfocus = function(){
+            this.removeAttribute('placeholder');
+        };
+        o.onblur = function(){
+            if(this.value == '') this.setAttribute('placeholder','我是日期');
+        };
+ 
+    </script>
