@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>jQuery自定义checkbox和radiobox</title>
+    <script type="text/javascript" src="/ajaxjs/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".CheckBoxClass").change(function(){
+                if($(this).is(":checked")){
+                    $(this).next("label").addClass("LabelSelected");
+                }else{
+                    $(this).next("label").removeClass("LabelSelected");
+                }
+            });
+            $(".RadioClass").change(function(){
+                if($(this).is(":checked")){
+                    $(".RadioSelected:not(:checked)").removeClass("RadioSelected");
+                    $(this).next("label").addClass("RadioSelected");
+                }
+            });
+        });
+    </script>
+    <style>
+        .CheckBoxClass,.RadioClass{
+            display: none;
+        }
+        .CheckBoxLabelClass{
+            background: url("/jscss/demoimg/201312/UnCheck.png") no-repeat;
+            padding-left: 30px;
+            padding-top: 3px;
+            margin: 5px;
+            height: 28px;
+            width: 150px;
+            display: block;
+        }
+        .CheckBoxLabelClass:hover, .RadioLabelClass:hover{
+            text-decoration: underline;
+        }
+        .LabelSelected{
+            background: url("/jscss/demoimg/201312/Check.png") no-repeat;
+        }
+        .RadioLabelClass{
+            background: url("/jscss/demoimg/201312/RUnCheck.png") no-repeat;
+            padding-left: 30px;
+            padding-top: 3px;
+            margin: 5px;
+            height: 28px;
+            width: 70px;
+            display: block;
+            float: left;
+        }
+        .RadioSelected{
+            background: url("/jscss/demoimg/201312/RCheck.png") no-repeat;
+        }
+    </style>
+</head>
+<body>
+<h3>自定义的HTML表单控件：</h3>
+<div>
+    <input id="CheckBox1" type="checkbox" class="CheckBoxClass"/>
+    <label id="Label1" for="CheckBox1" class="CheckBoxLabelClass">复选框 1</label>
+    <input id="CheckBox2" type="checkbox" class="CheckBoxClass"/>
+    <label id="Label2" for="CheckBox2" class="CheckBoxLabelClass">Checkbox 2</label>
+</div>
+<div>
+    <input id="Radio1" type="radio" class="RadioClass" name="group1" >
+    <label id="Label1" for="Radio1" class="RadioLabelClass">单选框 1</label>
+    <input id="Radio2" type="radio" class="RadioClass" name="group1"/>
+    <label id="Label2" for="Radio2" class="RadioLabelClass">Radio 2</label>
+    <input id="Radio3" type="radio" class="RadioClass" name="group1"/>
+    <label id="Label3" for="Radio3" class="RadioLabelClass">Radio 3</label>
+</div>
+</body>
+</html>
