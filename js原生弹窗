@@ -1,0 +1,86 @@
+ #close{
+            background:url(__PUBLIC__/img/close.png) no-repeat;
+            width:15px;
+            height:15px;
+            cursor:pointer;
+            position:absolute;
+            right:-15px;
+            top:-15px;
+            text-indent:-999em;
+            background-size: contain;
+        }
+        #mask{
+            background-color: #888888;
+            opacity:0.3;
+            filter: alpha(opacity=30);
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:1000;
+        }
+        #login{
+            position:fixed;
+            z-index:1001;
+        }
+        .loginCon{
+            position:relative;
+            padding-top: 1px;;
+            height:30vh;
+            background: #fff;
+            border-radius: 5px;;
+
+        }
+<script>
+        function openNew() {
+            //获取页面的高度和宽度
+            var sWidth = document.body.scrollWidth;
+            var sHeight = document.body.scrollHeight;
+
+            //获取页面的可视区域高度和宽度
+            var wHeight = document.documentElement.clientHeight;
+            var wWidth = document.documentElement.clientWidth;
+            var oMask = document.createElement("div");
+            oMask.id = "mask";
+            oMask.style.height = sHeight + "px";
+            oMask.style.width = sWidth + "px";
+            document.body.appendChild(oMask);
+            var oLogin = document.createElement("div");
+            oLogin.id = "login";
+            var w=oLogin.style.width=(wWidth*0.875)+"px";
+            oLogin.innerHTML =
+                    '<form action="__SELF__" method="post"><div class="loginCon">' +
+                    '<div class="replay-box">' +
+                    '<textarea rows="5" name="con"  placeholder="请输入回复内容"></textarea>'+
+                    '<div class="common-btn-box" style="position: absolute;bottom: 20px;left: 50%;margin-left: -20%">'+
+                    '<input type="submit" class="no-input common-btn" value="回复" id="replay-btn">'+
+                    '</div>'+
+                    '</div>'+
+                    '<div id="close"></div>'+
+                    '</div></form>';
+
+            document.body.appendChild(oLogin);
+
+            //获取登陆框的宽和高
+            var dHeight = oLogin.offsetHeight;
+            var dWidth = oLogin.offsetWidth;
+            //设置登陆框的left和top
+
+            oLogin.style.left = sWidth / 2 - dWidth / 2 + "px";
+            oLogin.style.top = wHeight / 2 - dHeight / 2 + "px";
+            //点击关闭按钮
+            var oClose = document.getElementById("close");
+            var repalyClose = document.getElementById("replay-btn");
+            //点击登陆框以外的区域也可以关闭登陆框
+            repalyClose.onclick=oClose.onclick = oMask.onclick = function () {
+                document.body.removeChild(oLogin);
+                document.body.removeChild(oMask);
+            };
+        }
+        window.onload = function () {
+            var oBtn = document.getElementById("replay");
+            //点击登录按钮
+            oBtn.onclick = function () {
+                openNew();
+                return false;
+            }};
+    </script>
