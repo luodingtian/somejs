@@ -1,0 +1,38 @@
+<div class="focus-box">
+                <div class="addWrap">
+                    <div class="swipe" id="mySwipe">
+                        <div class="swipe-wrap">
+                            <volist name="banner" id="ban">
+                                <div><a href="{$ban.url}"><img class="img-responsive" originalSrc="{$ban.img}"/></a></div><!--图片个数-->
+                            </volist>
+                        </div>
+                    </div>
+                    <ul id="position">
+                        <li class="cur"></li>
+                        <li class=""></li>
+                        <li class=""></li>
+                    </ul>
+                </div>
+            </div>
+            
+    // 引入swipe.js再接入以下的API即可
+     <script type="text/javascript" src="__PUBLIC__/js/swipe.js"></script>       
+     <script>
+             //轮播api
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var banner = Swipe(document.getElementById('mySwipe'), {
+            auto: 2000,
+            continuous: true,
+            disableScroll:true,
+            callback: function(pos) {
+                var i = bullets.length;
+                while (i--) {
+                    bullets[i].className = ' ';
+                }
+                bullets[pos].className = 'cur';
+            }
+        });
+ </script>
+ 
+ 
+ 
