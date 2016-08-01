@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" ng-app="routerApp">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <title>Book Store</title>
+    <script src="js/jquery-1.9.1.js"></script>
+</head>
+<style>
+    body{padding: 0;
+        margin: 0;}
+    .window{background: orangered}
+    .div1{width:100%;height:50px;text-align: center;background: blue;margin:40px auto;}
+</style>
+<body>
+    <button class="openBtn">openWindow</button>
+    <div class="window" style="display: none;">
+        <i class="closeBtn fa fa-close fa-2x">关闭按钮</i><!--关闭按钮-->
+        <div class="innerWindow">
+       <div class="div1">content</div>
+        <div class="div1">content</div>
+        <div class="div1">content</div>
+        <div class="div1">content</div>
+        <div class="div1">content</div>
+       </div>
+    </div>
+<div class="windowCover" style="display: none;"></div>
+</body>
+<script>
+    $(function(){
+        var windowWidth=80;//这里相当于80%；下面会自动转换成百分数；设置宽度的时候请用百分比；
+        var innerWindowWidth=80;
+        var closeRight=10+'px';
+        var closeTop=10+'px';
+        var bodyHeight=$(window).height();
+        var windowHeight=$('.window').outerHeight();
+        var windowCss={
+            position:'absolute',
+            width:windowWidth+'%',
+            left:(100-windowWidth)/2+'%',
+            top:  (bodyHeight-windowHeight)/2,
+            zIndex:1001
+        };
+        var innerWindowCss={
+            width:innerWindowWidth+'%',
+            margin:0+' '+'auto'
+        };
+        var closeCss={
+            position:'absolute',
+            right:closeRight,
+            top: closeTop
+        };
+        var windowCoveCss={
+            position:'fixed',
+            zIndex:1000,
+            top:0,
+            background:'#000',
+            opacity:'0.5',
+            height:100+'%',
+            width:100+'%'
+        };
+        $('.window').css(windowCss);
+        $('.innerWindow').css(innerWindowCss);
+        $('.closeBtn').css(closeCss);
+        $('.windowCover').css(windowCoveCss);
+        $('.closeBtn').on('click',function(){
+            $(this).parent().fadeOut('fast');
+            $('.windowCover').fadeOut('fast');
+        }) ;
+        $('.openBtn').on('click',function(){
+            $('.window').fadeIn('fast');
+            $('.windowCover').fadeIn('fast');
+        });
+        $('.windowCover').on('click',function(){
+            $(this).fadeOut('fast');
+            $('.window').fadeOut('fast');
+        })
+
+    })
+</script>
+</html>
+
