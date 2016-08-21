@@ -1,0 +1,20 @@
+<input type="hidden" value="100" id="price" /><!--单价-->
+              <table>
+                    <tr>
+                        <td class="grey">数量:</td>
+                        <td align="right">
+                            <i  class="fa fa-minus grey" onclick="numDec()"></i>
+                            <input class="input-no font14 " type="text" id="quantity" value="1"  style="width: 20px;text-align: center"/>
+                            <i  class="fa fa-plus them"  onclick="numAdd()"></i>
+                        </td>
+                    </tr>
+                </table>
+          
+                <table class="box-size-30 ">
+                    <tr>
+                        <td class="grey">小计:</td>
+                        <td align="right">
+                            <div id="totalPrice" >{$proinfo['fee']}</div>
+                        </td>
+                    </tr>
+                </table>
